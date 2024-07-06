@@ -1,0 +1,22 @@
+{
+  "name": "quotesbook",
+  "version": "1.0.0",
+  "description": "Unlock a wonderful collection of quotes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/divyaprasad008/QuotesBook.git"
+  },
+  "keywords": [
+    "Quotes"
+  ],
+  "author": "Divya Prasad",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/divyaprasad008/QuotesBook/issues"
+  },
+  "homepage": "https://github.com/divyaprasad008/QuotesBook#readme"
+}
