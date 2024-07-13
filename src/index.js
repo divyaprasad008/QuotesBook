@@ -2,23 +2,19 @@
 import express from "express";
 import env from "dotenv/config"
 import userRouter from "./routes/user.routes.js"
-import bodyParser from "body-parser";
-import morgan from "morgan";
 
 const app = express()
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+
 const port = env.PORT || 2000
-
-import {pool} from "./db/index.js";
-// console.log(pool)
-
-// app.use(bodyParser.json()); // Enable JSON parsing
-app.use(bodyParser.urlencoded({ extended: true })); // for URL-encoded data
-app.use(morgan('dev'))
-
-app.use('/api/v1/user',userRouter);
-
-
-
 app.listen(port,()=>{
     console.log(`Quotesbook started on port ${port}`)
 })
+// app.post('/profile',upload.none(), function (req, res, next) {
+//     console.log(req.body)
+//     res.json(req.body)
+//   })
+  
+app.use('/api/v1/user',userRouter);

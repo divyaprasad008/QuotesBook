@@ -30,7 +30,11 @@ import env from "dotenv/config"
 # installing postgres
 npm i pg
 
-npm i body-parser
-
 npm i cors --save
+
+npm i multer -- save
+
+npm i bcrypt --save
+
+npm install jsonwebtoken --save
 */

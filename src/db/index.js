@@ -10,10 +10,10 @@ const { Client } = pg
 
 const {Pool} = pg
 const pool = new Pool({
-  user: 'me',
+  user: 'my_admin',
   host: 'localhost',
-  database: 'api',
-  password: 'password',
+  database: 'quotesbook',
+  password: 'my_admin',
   port: 5432,
 })
 
