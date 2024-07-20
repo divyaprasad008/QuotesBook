@@ -1,5 +1,4 @@
 import { Router } from "express";
-import asyncHandler from "express-async-handler";
 import { signup, login } from "../controllers/user.controller.js";
 import multer from "multer";
 const upload = multer();
