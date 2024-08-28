@@ -12,10 +12,10 @@ export const verifyJwt = asyncHandler(async(req, res, next)=>{
             throw new ErrorResponse(404,"Unauthorize request")
         }
         let decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-        // let decodedUserId = decodedToken?.id;
+        let decodedUserId = decodedToken?.id;
         let decodedUserEmail = decodedToken?.email;
-        // console.log(decodedUserId, decodedUserEmail);
-        let decodedUserId = 14;
+        // console.log(decodedToken);
+        // let decodedUserId = 14;
         if(!decodedUserId){
             throw new ErrorResponse(401,"Unauthorize Request")
         }
@@ -32,6 +32,11 @@ export const verifyJwt = asyncHandler(async(req, res, next)=>{
         if(result.rows[0].email!=decodedUserEmail){
             throw new ErrorResponse(401,"Unauthorize Request")
         }
+        req.userId = decodedUserId;
+        req.email = decodedUserEmail;
+        req.firstname = decodedToken?.firstname;
+        req.lastname = decodedToken?.lastname;
+        req.username = decodedToken?.username;
 
         next();
         // res.send(new ApiResponse(200,"Success",result));

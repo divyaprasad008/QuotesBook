@@ -60,7 +60,7 @@ const signup = asyncHandler(async(req,res)=>{
         })
 
         if(result.rows.length>0){
-            throw new ErrorResponse(500, "Record already exist")
+            throw new ErrorResponse(409, "Record already exist")
         }
 
         const hash_password = await bcrypt.hash(password, 10);
@@ -69,7 +69,7 @@ const signup = asyncHandler(async(req,res)=>{
             , [myDate(),firstname, lastname, email, username, hash_password]
             , (error, results) => {
                 if (error) {
-                    throw new ErrorResponse(404,"Database Error",error.stack)
+                    throw new ErrorResponse(500,"Database Error",error.stack)
                 }
                 console.log(results)
                 res.status(201).json(new ApiResponse(201,`User added with ID: ${results.rows[0].id}`,req.body))
@@ -79,7 +79,7 @@ const signup = asyncHandler(async(req,res)=>{
 
     
     } catch (error) {
-        res.status(500).send(error);
+        res.status(500).send(new ErrorResponse(500,"Some Error",error.stack))
     }
 
 
@@ -124,18 +124,14 @@ const login = asyncHandler(async(req,res)=>{
                 'refreshToken':refreshToken
             }
             res.status(200).json(new ApiResponse(200,`Login Successfully`,sendData))
-        }
-
-        
+        }   
     } catch (error) {
         console.log(`Error:${error}`)
         res.status(500).send(new ErrorResponse(500,"Some Error",error.stack))
     }
-    
 })
 
 async function generateAccessAndRefreshToken(userId){
-    
     let result = await pool.query({
         text:'SELECT id, firstname, lastname, email, username, "refreshToken" from users where id = $1',
         values:[userId]
@@ -151,26 +147,18 @@ async function generateAccessAndRefreshToken(userId){
     
     let accessToken = await generateAccessToken(userData)
     let refreshToken = await generateRefreshToken(userData)
-
     return {userData,accessToken, refreshToken};
-
-
 }
  
 async function generateAccessToken(userData){
     let token = jwt.sign(userData, process.env.ACCESS_TOKEN_SECRET,{expiresIn:process.env.ACCESS_TOKEN_EXPIRY});
     // console.log("Access token",userData,process.env.ACCESS_TOKEN_SECRET,process.env.ACCESS_TOKEN_EXPIRY, token)
     return token;
-    
 }
 
 async function generateRefreshToken(userData){
     let token = await jwt.sign(userData, process.env.REFRESH_TOKEN_SECRET,{expiresIn:process.env.REFRESH_TOKEN_EXPIRY});
     // console.log("Refresh token",userData,process.env.REFRESH_TOKEN_SECRET,process.env.REFRESH_TOKEN_EXPIRY, token)
     return token;
-    
 }
-
-
-
 export {signup, login}
