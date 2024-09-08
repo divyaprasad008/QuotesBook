@@ -25,3 +25,9 @@ The profile page will display the number of people who have liked the user's pin
 
 
 Overall, Quotesbook aims to provide a user-friendly platform for discovering, sharing, and connecting with inspirational quotes.
+
+
+## ER Diagram
+
+![ER Diagram](/diagrams/ERD.png "Quotesbook ER Diagram")
+
