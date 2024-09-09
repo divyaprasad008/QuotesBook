@@ -27,6 +27,11 @@ The profile page will display the number of people who have liked the user's pin
 Overall, Quotesbook aims to provide a user-friendly platform for discovering, sharing, and connecting with inspirational quotes.
 
 ---
+## Tech Stack
+
+![Quotesbook Techstack](/diagrams/Techstack.png "Quotesbook Tech Stack")
+
+---
 ## ER Diagram
 
 ![ER Diagram](/diagrams/ERD.png "Quotesbook ER Diagram")
@@ -36,4 +41,8 @@ Overall, Quotesbook aims to provide a user-friendly platform for discovering, sh
 
 ![Use Case Diagram](/diagrams/UsecaseDiagram.png "Quotesbook Use Case Diagram")
 
+---
+## Swagger API Docs
 
+http://localhost:2000/api-docs/
+![API Docs](/diagrams/SwaggerApiDocs.png "Quotesbook API Docs")
