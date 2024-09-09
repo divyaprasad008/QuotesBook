@@ -34,6 +34,6 @@ Overall, Quotesbook aims to provide a user-friendly platform for discovering, sh
 ---
 ## Usecase Diagram
 
-![Use Case Diagram](/diagrams/UsecaeDiagram.png "Quotesbook Use Case Diagram")
+![Use Case Diagram](/diagrams/UsecaseDiagram.png "Quotesbook Use Case Diagram")
 
 
